@@ -1,0 +1,35 @@
+---
+title: "Poisson Distribution"
+output: html_notebook
+---
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+
+Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
+
+```{r}
+n <- 10^(1:3)
+x <- 0:10
+
+plot(x,x*0.03, main = "Limiting Process of the Binomial Distribution",type='n')
+cols <- c("red","orange", "yellow", "green", "blue", "purple")
+for(i in seq_along(n)){ 
+  points(x,dbinom(x,n[i],4/n[i]),pch=16,col=cols[i]) 
+  } 
+
+points(x,dpois(x,4),type='l') 
+legend("topright", legend=c("n=10, p=0.4","n=100, p=0.04", "n=1000, p=0.004","Poisson"), pch=c(16,16,16,NA),col=c(cols[seq_along(n)],"black"),lty=c(NA,NA,NA,1))
+
+```
+
+```{r}
+plot(0:20, dpois( x=0:20, lambda=6 ), xlim=c(-2,20))
+normden <- function(x){dnorm(x, mean=6, sd=sqrt(6))}
+curve(normden, from=-4, to=20, add=TRUE, col="red")
+```
+
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
+
+The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
