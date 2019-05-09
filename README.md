@@ -8,3 +8,8 @@ Fishers Exact Test <br/>
 Pearsons Chi Squared Test <br/><br/>
 
 Dataset included
+
+Preview for Notebooks: <br/>
+
+https://htmlpreview.github.io/?https://github.com/coderXmachina2/computationalMathematics/blob/master/poissonDistributionMarkdown.nb.html
+
