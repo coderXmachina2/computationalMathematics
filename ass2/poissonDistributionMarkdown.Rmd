@@ -1,0 +1,159 @@
+---
+title: "Poisson Distribution"
+output: html_notebook
+---
+
+Its just like Jupiter Notebook. But for math and stuff.
+
+Poisson Distribution. When N continues to grow very very large (number of Asteroids in the solar system) while p becomes very very small (probability of said asteroid hitting Earth) or in assignment 2 number of hours in a day and probability of consuing coffee within a given time.
+
+Probability Mass Function of a Poisson Distribution
+
+Prob(X = n) = (e^-??)((??^n)/n!) n = 0,1,2,3,4...
+
+This is limiting process of Poisson Distributin
+
+```{r}
+
+n <- 10^(1:3)
+x <- 0:10
+
+plot(x,x*0.03, main = "Poisson Distribution as a result of Limiting Process of the Binomial Distribution\n",type='n')
+cols <- c("red","orange", "yellow", "green", "blue", "purple")
+for(i in seq_along(n)){ 
+  points(x,dbinom(x,n[i],4/n[i]),pch=16,col=cols[i]) 
+  } 
+
+points(x,dpois(x,4),type='l') 
+legend("topright", 
+       legend=c("n=10, p=0.4","n=100, p=0.04", "n=1000, p=0.004","Poisson"), 
+       pch=c(16,16,16,NA),
+       col=c(cols[seq_along(n)],"red"),lty=c(NA,NA,NA,1))
+
+
+```
+
+```{r}
+#clear plot
+
+numVector <- 0:30
+lambdaParam <- 6
+
+plot(numVector, dpois( numVector, lambdaParam ), main = "Plot Distribution\n", xlim=c(-2,30))
+normden <- function(x){dnorm(x, mean=lambdaParam, sd=sqrt(lambdaParam))}
+curve(normden, from=-4, to=30.5, add=TRUE, col="red")
+
+abline(v=qpois(0.95,6), col = "blue")
+
+
+```
+
+Suppose that lambda = 3.1 and we observe X = 7 where X is given a Poisson distribution.
+
+Question 1 a:
+State the precise value of p-value for observation = 7
+```{r}
+
+
+
+cat(paste("In-formal definiton of P value is the Probability that given the Null is true (Ho: ?? = 3.1) of seeing Obs or an Obs more extreme i.e. whether            Obs X = 7 is sufficient evidence that ?? > 3 (H1).\n", 
+           "The Precise Definition of P value: P( X ??? 7| ?? = 3) ", sep =" \n"))
+
+
+```
+
+Question 1 b:
+Calculate the P value for this obs X = 7 and Interpret
+
+
+```{r}
+
+print("Given a Significance of 5% and Lambda = 3.1")
+
+lambdaParam2 <- 3.1
+critcalObs <- qpois(0.95, lambdaParam2)
+pVal <- ppois(critcalObs,lambdaParam2)
+
+
+print("The number of Observations needed for significance is: ")
+print(critcalObs)
+
+plot(numVector, dpois( numVector, lambdaParam2 ), main = "Plot Distribution\n", xlim=c(-2,20))
+normden <- function(x){dnorm(x, mean=lambdaParam2, sd=sqrt(lambdaParam2))}
+curve(normden, from=-4, to=20, add=TRUE, col="black")
+
+abline(v=critcalObs, col = "red")
+abline(v=7, col = "blue")
+
+```
+```{r}
+
+```
+
+ *Ctrl+Alt+I* Add New Chunk
+
+Question 1 c:
+For N Obs = 7 plot a log likelihood function for lambda and state a credible interval for lambda
+
+```{r}
+
+Obs <- 7
+lambda <- seq(from=1,to=15,len=100) 
+plot(lambda,dpois(Obs,lambda),main='Likelihood function for lambda', col = 'blue')
+
+supp <- dpois(Obs, lambda, log = TRUE)
+plot(lambda, supp-max(supp), main='Log Likelihood function of Lambda')
+abline(v=Obs)
+abline(v=4, col = "red")
+abline(v=12, col = "red")
+
+
+abline(h=0)
+abline(h=-2)
+
+ 
+print("Credible interval of lambda is between 4 and 12")
+```
+
+  
+Question 1 d:
+A Bayesian comes along and announces that his prior for  is an exponential distribution with rate 0.6 (that is, P(0.6). Plot his posterior likelihood function for ??, given the observation of 7. 
+
+```{r}
+
+
+
+
+
+
+```
+
+Given a Beta distribution of a = 1.3 b = 1.5
+performed 5 times with 3 success and 2 failure
+
+Question 2 a:
+Plot the Prior and Posterior PDF
+
+
+
+```{r}
+
+numVectorBayes <- seq(from = 0 , 1, len = 100)
+plot(numVectorBayes, numVectorBayes*0 , ylim=c(0,4),ylab="PDF", type="n")
+points(numVectorBayes,dbeta(numVectorBayes,1.3,1.5),lwd=2,type="l",col="black")
+points(numVectorBayes,dbeta(numVectorBayes,(1.3+3),(1.5+2)),lwd=2,type="l",col="red")
+legend("topright", lwd = 2,col=c("black","red"), legend=c("before Evidence", "after Evidence"))
+
+
+```
+
+Question 2 b:
+Calculate the maximum likelihoof estimate or p and give the prior mode
+
+
+```{r}
+
+pbeta((3/5),(1.3+3),(1.5+2))
+
+```
+
