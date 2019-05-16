@@ -38,6 +38,9 @@ cat("Mean Night Productivity: ", mean(myData$Night.Time.Productivity))
 
 ```
 
+############################################################################################################################################################
+
+
 First Test, Am I a morning person or a night person. T Test. We want to Aswer the question of whether I am Morning person or night person. Is more work done when sun is up or sun is down?
 
 We use students t test on two samples of day time productivity and night time
@@ -50,7 +53,13 @@ t.test(myData$Day.Productivity, myData$Night.Time.Productivity, paired=TRUE)
 
 ```
 
-Addicted to Coffe or not
+############################################################################################################################################################
+
+Fishers Exact
+
+Addicted to Coffe or not?
+
+
 
 
 ```{r}
@@ -84,6 +93,8 @@ fisher.test(addictMatrix, alternative="greater")
 
 ```
 
+############################################################################################################################################################
+
 Poisson distribution test whether more cups of coffe is = productivity. We need to find Lambda.
 
 ```{r}
@@ -112,7 +123,9 @@ abline(v=lambda)
 
 ```
 
-We can infer that lambda = 2.83 is bang on the money. It is acceptable to be used in our model.
+We can infer that lambda = 2.83 is acceptable to be used in our model, it falls within the 2 units of support.
+
+
 
 ```{r}
 
@@ -124,13 +137,23 @@ plot(0:20, dpois( x=0:20, lambda=2.83 ), xlim=c(-2,20))
 normden <- function(x){dnorm(x, mean=2.83, sd=sqrt(2.83))}
 curve(normden, from=-4, to=20, add=TRUE, col="purple")
 
-abline(v=critcalObs, col = "red" ) 
-abline(v=3, col = "blue")
+abline(v=critcalObs, col = "red" ) # Critical Line
+abline(v=3, col = "blue") #Observation x = 3
 
 
 ```
 
+```{r}
+pValPois <- ppois(3,lambda, lower.tail=FALSE)
+cat("The p value: ", pValPois)
+
+
+```
+
+
 conclusion is that we fail to reject the Null
+
+############################################################################################################################################################
 
 We wish to Use Pearson's Chi Squared Test to examine whether Productivity is independent of sleeping Before 12 or after 12.
 
@@ -183,7 +206,7 @@ Try this. calculate badness of Fit
 
 ```{r}
 
-expect <- c()
+expect <- c( A = 2.84, B = 2.84, C = 2.84 )
 
 obs <- c()
 
@@ -195,6 +218,8 @@ obs <- c()
 mean(myData$Total.Daily.Productivity)
 ```
 
+############################################################################################################################################################
+
 Bayesian
 "Drinking coffee at after 8 leads to a sleepless night"
 
@@ -205,6 +230,10 @@ Bayesian
 ```
 
 
+############################################################################################################################################################
+Linear Regression Sleep and productivity Correlation
+
+THere is no correlation between How much sleep you get and how much work you get done the next day.
 
 ```{r}
 
@@ -213,5 +242,5 @@ Bayesian
 
 ```
 
-
+############################################################################################################################################################
 
