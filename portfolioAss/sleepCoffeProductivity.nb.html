@@ -268,8 +268,8 @@ cat(&quot;Is data a dataframe: &quot;, is.data.frame(myData), &quot;\n&quot;)</c
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY2F0KFwiRGF0YXNldCBDb250YWluczogXCIsIG5jb2wobXlEYXRhKSwgXCIgQXR0cmlidXRlc1xcblwiKVxuYGBgIn0= -->
 <pre class="r"><code>cat(&quot;Dataset Contains: &quot;, ncol(myData), &quot; Attributes\n&quot;)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiRGF0YXNldCBDb250YWluczogIDEyICBBdHRyaWJ1dGVzXG4ifQ== -->
-<pre><code>Dataset Contains:  12  Attributes</code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiRGF0YXNldCBDb250YWluczogIDE0ICBBdHRyaWJ1dGVzXG4ifQ== -->
+<pre><code>Dataset Contains:  14  Attributes</code></pre>
 <!-- rnb-output-end -->
 <!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY2F0KFwiRGF0YXNldCBDb250YWluczogXCIsIG5yb3cobXlEYXRhKSwgXCIgSW5zdGFuY2VzXCIpXG5gYGAifQ== -->
 <pre class="r"><code>cat(&quot;Dataset Contains: &quot;, nrow(myData), &quot; Instances&quot;)</code></pre>
@@ -444,88 +444,124 @@ abline(v=3, col = &quot;blue&quot;)</code></pre>
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
 <p>conclusion is that we fail to reject the Null</p>
+<p>We wish to Use Pearson’s Chi Squared Test to examine whether Productivity is independent of sleeping Before 12 or after 12.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudHlwZW9mKG15RGF0YSRTbGVlcC5UaW1lKVxuYGBgIn0= -->
-<pre class="r"><code>typeof(myData$Sleep.Time)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubGlicmFyeShNQVNTKVxuY2hpVGVzdFRibCA8LSB0YWJsZShteURhdGEkc2xlZXBUaW1lQ2F0Q2xhc3MsIG15RGF0YSRUb3RhbC5EYWlseS5Qcm9kdWN0aXZpdHkpXG5jaGlUZXN0VGJsXG5gYGAifQ== -->
+<pre class="r"><code>library(MASS)
+chiTestTbl &lt;- table(myData$sleepTimeCatClass, myData$Total.Daily.Productivity)
+chiTestTbl</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiaW50ZWdlclwiXG4ifQ== -->
-<pre><code>[1] &quot;integer&quot;</code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiICAgXG4gICAgMCAxLjEgMS4xNSAxLjQ1IDIgMi4wNSAyLjE1IDIuMyAyLjYgMi43IDMuMDUgMy4zNSAzLjQgMy40NSAzLjUgMy44IDQuMTUgNC4zIDQuMzUgNC40NSA1IDUuM1xuICBBIDEgICAxICAgIDEgICAgMSAwICAgIDAgICAgMSAgIDAgICAwICAgMCAgICAxICAgIDAgICAwICAgIDMgICAwICAgMCAgICAwICAgMCAgICAwICAgIDAgMCAgIDBcbiAgQiAyICAgMCAgICAwICAgIDAgMSAgICAxICAgIDEgICAxICAgMSAgIDEgICAgMCAgICAyICAgMSAgICAxICAgMSAgIDAgICAgMCAgIDMgICAgMCAgICAyIDAgICAxXG4gIEMgMSAgIDAgICAgMCAgICAxIDAgICAgMCAgICAwICAgMCAgIDAgICAwICAgIDAgICAgMCAgIDAgICAgMSAgIDAgICAxICAgIDEgICAwICAgIDEgICAgMCAxICAgMFxuIn0= -->
+<pre><code>   
+    0 1.1 1.15 1.45 2 2.05 2.15 2.3 2.6 2.7 3.05 3.35 3.4 3.45 3.5 3.8 4.15 4.3 4.35 4.45 5 5.3
+  A 1   1    1    1 0    0    1   0   0   0    1    0   0    3   0   0    0   0    0    0 0   0
+  B 2   0    0    0 1    1    1   1   1   1    0    2   1    1   1   0    0   3    0    2 0   1
+  C 1   0    0    1 0    0    0   0   0   0    0    0   0    1   0   1    1   0    1    0 1   0</code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY2F0KFwiXFxuXCIpXG5gYGAifQ== -->
-<pre class="r"><code>cat(&quot;\n&quot;)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY2F0KGNoaVRlc3RUYmwsIFwiXFxuXFxuXCIpXG5gYGAifQ== -->
+<pre class="r"><code>cat(chiTestTbl, &quot;\n\n&quot;)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubXlEYXRhJFNsZWVwLlRpbWVcbmBgYCJ9 -->
-<pre class="r"><code>myData$Sleep.Time</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiIFsxXSAxMDo1MzowMCBQTSAxMTozNTowMCBQTSAxMTo1MDowMCBQTSAxMjowNTowMCBBTSAxMToyMDowMCBQTSAxMjoyMDowMCBBTSAxMjo0NTowMCBBTVxuIFs4XSAxMjoxNTowMCBBTSAxMjo0NTowMCBBTSAxMjo1MDowMCBBTSAwMToxNTowMCBBTSAwMToxMDowMCBBTSAxMjoyMDowMCBBTSAxMjoxMjowMCBBTVxuWzE1XSAwMTowMDowMCBBTSAxMjozNTowMCBBTSAxMjozMDowMCBBTSAxMTo0MjowMCBQTSAxMDozMDowMCBQTSAxMjoyMjowMCBBTSAxMjo0NTowMCBBTVxuWzIyXSAxMjoyMjowMCBBTSAxMDozMDowMCBQTSAxMjozMDowMCBBTSAwMToxMDowMCBBTSAwMToyNTowMCBBTSAxMjo0ODowMCBBTSAwMToyMDowMCBBTVxuWzI5XSAxMDozMDowMCBQTSAxMjozMDowMCBBTSAwOTo0NTowMCBQTSAwMToyNTowMCBBTSAxMjo0ODowMCBBTSAxMjoxMDowMCBBTSAxMjoyODowMCBBTVxuMjQgTGV2ZWxzOiAwMTowMDowMCBBTSAwMToxMDowMCBBTSAwMToxNTowMCBBTSAwMToyMDowMCBBTSAwMToyNTowMCBBTSAuLi4gMTI6NTA6MDAgQU1cbiJ9 -->
-<pre><code> [1] 10:53:00 PM 11:35:00 PM 11:50:00 PM 12:05:00 AM 11:20:00 PM 12:20:00 AM 12:45:00 AM
- [8] 12:15:00 AM 12:45:00 AM 12:50:00 AM 01:15:00 AM 01:10:00 AM 12:20:00 AM 12:12:00 AM
-[15] 01:00:00 AM 12:35:00 AM 12:30:00 AM 11:42:00 PM 10:30:00 PM 12:22:00 AM 12:45:00 AM
-[22] 12:22:00 AM 10:30:00 PM 12:30:00 AM 01:10:00 AM 01:25:00 AM 12:48:00 AM 01:20:00 AM
-[29] 10:30:00 PM 12:30:00 AM 09:45:00 PM 01:25:00 AM 12:48:00 AM 12:10:00 AM 12:28:00 AM
-24 Levels: 01:00:00 AM 01:10:00 AM 01:15:00 AM 01:20:00 AM 01:25:00 AM ... 12:50:00 AM</code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiMSAyIDEgMSAwIDAgMSAwIDAgMSAwIDEgMCAxIDAgMCAxIDAgMSAxIDAgMCAxIDAgMCAxIDAgMCAxIDAgMSAwIDAgMCAyIDAgMCAxIDAgMyAxIDEgMCAxIDAgMCAwIDEgMCAwIDEgMCAzIDAgMCAwIDEgMCAyIDAgMCAwIDEgMCAxIDAgXG4ifQ== -->
+<pre><code>1 2 1 1 0 0 1 0 0 1 0 1 0 1 0 0 1 0 1 1 0 0 1 0 0 1 0 0 1 0 1 0 0 0 2 0 0 1 0 3 1 1 0 1 0 0 0 1 0 0 1 0 3 0 0 0 1 0 2 0 0 0 1 0 1 0 </code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuI21heChteURhdGEkU2xlZXAuVGltZSlcbmNhdChcIlxcblwiKVxuYGBgIn0= -->
-<pre class="r"><code>#max(myData$Sleep.Time)
-cat(&quot;\n&quot;)</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY2hpc3EudGVzdChjaGlUZXN0VGJsKVxuYGBgIn0= -->
+<pre class="r"><code>chisq.test(chiTestTbl)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuc2xlZXBUSW1lQ29sIDwtIGZvcm1hdChhcy5QT1NJWGN0KG15RGF0YSRTbGVlcC5UaW1lLGZvcm1hdD1cIiVsOiVNOiVTXCIpLFwiJUglTSVTXCIpXG5zbGVlcFRJbWVDb2xcbmBgYCJ9 -->
-<pre class="r"><code>sleepTImeCol &lt;- format(as.POSIXct(myData$Sleep.Time,format=&quot;%l:%M:%S&quot;),&quot;%H%M%S&quot;)
-sleepTImeCol</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiIFsxXSBcIjEwNTMwMFwiIFwiMTEzNTAwXCIgXCIxMTUwMDBcIiBcIjAwMDUwMFwiIFwiMTEyMDAwXCIgXCIwMDIwMDBcIiBcIjAwNDUwMFwiIFwiMDAxNTAwXCIgXCIwMDQ1MDBcIlxuWzEwXSBcIjAwNTAwMFwiIFwiMDExNTAwXCIgXCIwMTEwMDBcIiBcIjAwMjAwMFwiIFwiMDAxMjAwXCIgXCIwMTAwMDBcIiBcIjAwMzUwMFwiIFwiMDAzMDAwXCIgXCIxMTQyMDBcIlxuWzE5XSBcIjEwMzAwMFwiIFwiMDAyMjAwXCIgXCIwMDQ1MDBcIiBcIjAwMjIwMFwiIFwiMTAzMDAwXCIgXCIwMDMwMDBcIiBcIjAxMTAwMFwiIFwiMDEyNTAwXCIgXCIwMDQ4MDBcIlxuWzI4XSBcIjAxMjAwMFwiIFwiMTAzMDAwXCIgXCIwMDMwMDBcIiBcIjA5NDUwMFwiIFwiMDEyNTAwXCIgXCIwMDQ4MDBcIiBcIjAwMTAwMFwiIFwiMDAyODAwXCJcbiJ9 -->
-<pre><code> [1] &quot;105300&quot; &quot;113500&quot; &quot;115000&quot; &quot;000500&quot; &quot;112000&quot; &quot;002000&quot; &quot;004500&quot; &quot;001500&quot; &quot;004500&quot;
-[10] &quot;005000&quot; &quot;011500&quot; &quot;011000&quot; &quot;002000&quot; &quot;001200&quot; &quot;010000&quot; &quot;003500&quot; &quot;003000&quot; &quot;114200&quot;
-[19] &quot;103000&quot; &quot;002200&quot; &quot;004500&quot; &quot;002200&quot; &quot;103000&quot; &quot;003000&quot; &quot;011000&quot; &quot;012500&quot; &quot;004800&quot;
-[28] &quot;012000&quot; &quot;103000&quot; &quot;003000&quot; &quot;094500&quot; &quot;012500&quot; &quot;004800&quot; &quot;001000&quot; &quot;002800&quot;</code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiQ2hpLXNxdWFyZWQgYXBwcm94aW1hdGlvbiBtYXkgYmUgaW5jb3JyZWN0XG4ifQ== -->
+<pre><code>Chi-squared approximation may be incorrect</code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY2F0KFwiXFxuXCIpXG5gYGAifQ== -->
-<pre class="r"><code>cat(&quot;\n&quot;)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuaGVhZChzbGVlcFRJbWVDb2wpXG5gYGAifQ== -->
-<pre class="r"><code>head(sleepTImeCol)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiMTA1MzAwXCIgXCIxMTM1MDBcIiBcIjExNTAwMFwiIFwiMDAwNTAwXCIgXCIxMTIwMDBcIiBcIjAwMjAwMFwiXG4ifQ== -->
-<pre><code>[1] &quot;105300&quot; &quot;113500&quot; &quot;115000&quot; &quot;000500&quot; &quot;112000&quot; &quot;002000&quot;</code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiXG5cdFBlYXJzb24ncyBDaGktc3F1YXJlZCB0ZXN0XG5cbmRhdGE6ICBjaGlUZXN0VGJsXG5YLXNxdWFyZWQgPSA0NC4wNDEsIGRmID0gNDIsIHAtdmFsdWUgPSAwLjM4NTNcbiJ9 -->
+<pre><code>
+    Pearson's Chi-squared test
+
+data:  chiTestTbl
+X-squared = 44.041, df = 42, p-value = 0.3853</code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY2F0KFwiXFxuXFxuXFxuXFxuXCIpXG5gYGAifQ== -->
-<pre class="r"><code>cat(&quot;\n\n\n\n&quot;)</code></pre>
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Since the p value is 0.3853 we is greater than the significance level, we do not reject the null</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuI21ha2UgaXQgZnVydGhlciBhY2N1cmF0ZSBieSBjb21iaW5pbmcgdGFibGVzXG5uZXdUYmwgPC0gY2JpbmQoY2hpVGVzdFRibFssXCIwXCJdK2NoaVRlc3RUYmxbLFwiMS4xXCJdK2NoaVRlc3RUYmxbLFwiMS4xNVwiXStjaGlUZXN0VGJsWyxcIjEuNDVcIl0rY2hpVGVzdFRibFssXCIyXCJdK2NoaVRlc3RUYmxbLFwiMi4wNVwiXStjaGlUZXN0VGJsWyxcIjIuMTVcIl0sXG4gICAgICAgICAgICAgICAgY2hpVGVzdFRibFssXCIyLjNcIl0rY2hpVGVzdFRibFssXCIyLjZcIl0rY2hpVGVzdFRibFssXCIyLjdcIl0rY2hpVGVzdFRibFssXCIzLjA1XCJdK2NoaVRlc3RUYmxbLFwiMy4zNVwiXStjaGlUZXN0VGJsWyxcIjMuNFwiXStjaGlUZXN0VGJsWyxcIjMuNDVcIl0sXG4gICAgICAgICAgICAgICAgY2hpVGVzdFRibFssXCIzLjRcIl0rY2hpVGVzdFRibFssXCIzLjhcIl0rY2hpVGVzdFRibFssXCI0LjE1XCJdK2NoaVRlc3RUYmxbLFwiNC4zXCJdK2NoaVRlc3RUYmxbLFwiNC4zNVwiXStjaGlUZXN0VGJsWyxcIjQuNDVcIl0rY2hpVGVzdFRibFssXCI1XCJdK2NoaVRlc3RUYmxbLFwiNS4zXCJdKVxuY2hpc3EudGVzdChuZXdUYmwpXG5gYGAifQ== -->
+<pre class="r"><code>#make it further accurate by combining tables
+newTbl &lt;- cbind(chiTestTbl[,&quot;0&quot;]+chiTestTbl[,&quot;1.1&quot;]+chiTestTbl[,&quot;1.15&quot;]+chiTestTbl[,&quot;1.45&quot;]+chiTestTbl[,&quot;2&quot;]+chiTestTbl[,&quot;2.05&quot;]+chiTestTbl[,&quot;2.15&quot;],
+                chiTestTbl[,&quot;2.3&quot;]+chiTestTbl[,&quot;2.6&quot;]+chiTestTbl[,&quot;2.7&quot;]+chiTestTbl[,&quot;3.05&quot;]+chiTestTbl[,&quot;3.35&quot;]+chiTestTbl[,&quot;3.4&quot;]+chiTestTbl[,&quot;3.45&quot;],
+                chiTestTbl[,&quot;3.4&quot;]+chiTestTbl[,&quot;3.8&quot;]+chiTestTbl[,&quot;4.15&quot;]+chiTestTbl[,&quot;4.3&quot;]+chiTestTbl[,&quot;4.35&quot;]+chiTestTbl[,&quot;4.45&quot;]+chiTestTbl[,&quot;5&quot;]+chiTestTbl[,&quot;5.3&quot;])
+chisq.test(newTbl)</code></pre>
 <!-- rnb-source-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxudGFpbChzbGVlcFRJbWVDb2wpXG5gYGAifQ== -->
-<pre class="r"><code>tail(sleepTImeCol)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiMDAzMDAwXCIgXCIwOTQ1MDBcIiBcIjAxMjUwMFwiIFwiMDA0ODAwXCIgXCIwMDEwMDBcIiBcIjAwMjgwMFwiXG4ifQ== -->
-<pre><code>[1] &quot;003000&quot; &quot;094500&quot; &quot;012500&quot; &quot;004800&quot; &quot;001000&quot; &quot;002800&quot;</code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiQ2hpLXNxdWFyZWQgYXBwcm94aW1hdGlvbiBtYXkgYmUgaW5jb3JyZWN0XG4ifQ== -->
+<pre><code>Chi-squared approximation may be incorrect</code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY2F0KFwiXFxuXCIpXG5gYGAifQ== -->
-<pre class="r"><code>cat(&quot;\n&quot;)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubWF4KHNsZWVwVEltZUNvbClcbmBgYCJ9 -->
-<pre class="r"><code>max(sleepTImeCol)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiMTE1MDAwXCJcbiJ9 -->
-<pre><code>[1] &quot;115000&quot;</code></pre>
+<!-- rnb-output-begin eyJkYXRhIjoiXG5cdFBlYXJzb24ncyBDaGktc3F1YXJlZCB0ZXN0XG5cbmRhdGE6ICBuZXdUYmxcblgtc3F1YXJlZCA9IDcuMjA4NSwgZGYgPSA0LCBwLXZhbHVlID0gMC4xMjUzXG4ifQ== -->
+<pre><code>
+    Pearson's Chi-squared test
+
+data:  newTbl
+X-squared = 7.2085, df = 4, p-value = 0.1253</code></pre>
 <!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubWluKHNsZWVwVEltZUNvbClcbmBgYCJ9 -->
-<pre class="r"><code>min(sleepTImeCol)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiMDAwNTAwXCJcbiJ9 -->
-<pre><code>[1] &quot;000500&quot;</code></pre>
-<!-- rnb-output-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuY2F0KFwiXFxuXCIpXG5gYGAifQ== -->
-<pre class="r"><code>cat(&quot;\n&quot;)</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyA8LSBhcy5EYXRlKG15RGF0YSRTbGVlcC5UaW1lKVxuI3Rlc3QgPC0gYXMuUE9TSVhsdChhcy5EYXRlKG15RGF0YSRTbGVlcC5UaW1lKSlcbmBgYCJ9 -->
-<pre class="r"><code># &lt;- as.Date(myData$Sleep.Time)
-#test &lt;- as.POSIXlt(as.Date(myData$Sleep.Time))</code></pre>
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuI2NidGwgPC0gY2JpbmQoY2hpVGVzdFRibClcbmBgYCJ9 -->
+<pre class="r"><code>#cbtl &lt;- cbind(chiTestTbl)</code></pre>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
-<p>“Drinking coffee at after 8 leads to a sleepless night”</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuI21ha2UgaXQgZnVydGhlciBhY2N1cmF0ZSBieSBjb21iaW5pbmcgdGFibGVzIGludG8gMyBncm91cHNcbm5ld1RibCA8LSBjYmluZChjaGlUZXN0VGJsWyxcIjBcIl0rY2hpVGVzdFRibFssXCIxLjFcIl0rY2hpVGVzdFRibFssXCIxLjE1XCJdK2NoaVRlc3RUYmxbLFwiMS40NVwiXStjaGlUZXN0VGJsWyxcIjJcIl0rY2hpVGVzdFRibFssXCIyLjA1XCJdK2NoaVRlc3RUYmxbLFwiMi4xNVwiXSsgY2hpVGVzdFRibFssXCIyLjNcIl0rY2hpVGVzdFRibFssXCIyLjZcIl0rY2hpVGVzdFRibFssXCIyLjdcIl0sXG4gICAgICAgICAgICAgICAgY2hpVGVzdFRibFssXCIzLjA1XCJdK2NoaVRlc3RUYmxbLFwiMy4zNVwiXStjaGlUZXN0VGJsWyxcIjMuNFwiXStjaGlUZXN0VGJsWyxcIjMuNDVcIl0rY2hpVGVzdFRibFssXCIzLjRcIl0rY2hpVGVzdFRibFssXCIzLjhcIl0rY2hpVGVzdFRibFssXCI0LjE1XCJdK2NoaVRlc3RUYmxbLFwiNC4zXCJdK2NoaVRlc3RUYmxbLFwiNC4zNVwiXStjaGlUZXN0VGJsWyxcIjQuNDVcIl0rXG4gICAgICAgICAgICAgICAgY2hpVGVzdFRibFssXCI1XCJdK2NoaVRlc3RUYmxbLFwiNS4zXCJdKSAgICAgICBcbmNoaXNxLnRlc3QobmV3VGJsKVxuYGBgIn0= -->
+<pre class="r"><code>#make it further accurate by combining tables into 3 groups
+newTbl &lt;- cbind(chiTestTbl[,&quot;0&quot;]+chiTestTbl[,&quot;1.1&quot;]+chiTestTbl[,&quot;1.15&quot;]+chiTestTbl[,&quot;1.45&quot;]+chiTestTbl[,&quot;2&quot;]+chiTestTbl[,&quot;2.05&quot;]+chiTestTbl[,&quot;2.15&quot;]+ chiTestTbl[,&quot;2.3&quot;]+chiTestTbl[,&quot;2.6&quot;]+chiTestTbl[,&quot;2.7&quot;],
+                chiTestTbl[,&quot;3.05&quot;]+chiTestTbl[,&quot;3.35&quot;]+chiTestTbl[,&quot;3.4&quot;]+chiTestTbl[,&quot;3.45&quot;]+chiTestTbl[,&quot;3.4&quot;]+chiTestTbl[,&quot;3.8&quot;]+chiTestTbl[,&quot;4.15&quot;]+chiTestTbl[,&quot;4.3&quot;]+chiTestTbl[,&quot;4.35&quot;]+chiTestTbl[,&quot;4.45&quot;]+
+                chiTestTbl[,&quot;5&quot;]+chiTestTbl[,&quot;5.3&quot;])       
+chisq.test(newTbl)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiQ2hpLXNxdWFyZWQgYXBwcm94aW1hdGlvbiBtYXkgYmUgaW5jb3JyZWN0XG4ifQ== -->
+<pre><code>Chi-squared approximation may be incorrect</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5cdFBlYXJzb24ncyBDaGktc3F1YXJlZCB0ZXN0XG5cbmRhdGE6ICBuZXdUYmxcblgtc3F1YXJlZCA9IDEuMTgwMywgZGYgPSAyLCBwLXZhbHVlID0gMC41NTQyXG4ifQ== -->
+<pre><code>
+    Pearson's Chi-squared test
+
+data:  newTbl
+X-squared = 1.1803, df = 2, p-value = 0.5542</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuI2NidGwgPC0gY2JpbmQoY2hpVGVzdFRibClcbmBgYCJ9 -->
+<pre class="r"><code>#cbtl &lt;- cbind(chiTestTbl)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Try this. calculate badness of Fit</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucHJpbnQoXCJBc3NcIilcbmBgYCJ9 -->
+<pre class="r"><code>print(&quot;Ass&quot;)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIFwiQXNzXCJcbiJ9 -->
+<pre><code>[1] &quot;Ass&quot;</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubWVhbihteURhdGEkVG90YWwuRGFpbHkuUHJvZHVjdGl2aXR5KVxuYGBgIn0= -->
+<pre class="r"><code>mean(myData$Total.Daily.Productivity)</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiWzFdIDIuODRcbiJ9 -->
+<pre><code>[1] 2.84</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Bayesian “Drinking coffee at after 8 leads to a sleepless night”</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
 <!-- rnb-text-end -->
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIlNMZWVwIENvZmZlZSBQcm9kdWN0aXZpdHkgUG9ydGZvbGlvIg0Kb3V0cHV0OiBodG1sX25vdGVib29rDQotLS0NCg0KSXRzIGxpa2UgSnVwcGl0ZXIgTm90ZWJvb2sgYnV0IGZvciBzY2llbmNlDQoNClJ1biBDaHVuayAqQ3RybCtTaGlmdCtFbnRlcioNCkFkZCBDaHVuY2sgKkN0cmwrQWx0K0kqDQpIVE1MIFByZXZpZXcgKkN0cmwrU2hpZnQrSyoNCg0KYGBge3J9DQoNCnByaW50KCJQb3J0Zm9saW8gQXNzaWdubWVudCIpDQoNCg0KYGBgDQoNCmBgYHtyfQ0KDQpteURhdGEgPC0gcmVhZC5jc3YoJy4vZGF0YS9zbGVlcENvZmZlZVByb2R1Y3Rpdml0eS5jc3YnKQ0KDQpjYXQoIklzIGRhdGEgYSBkYXRhZnJhbWU6ICIsIGlzLmRhdGEuZnJhbWUobXlEYXRhKSwgIlxuIikNCmNhdCgiRGF0YXNldCBDb250YWluczogIiwgbmNvbChteURhdGEpLCAiIEF0dHJpYnV0ZXNcbiIpDQpjYXQoIkRhdGFzZXQgQ29udGFpbnM6ICIsIG5yb3cobXlEYXRhKSwgIiBJbnN0YW5jZXMiKQ0KDQoNCmBgYA0KDQpgYGB7cn0NCnByaW50KCJQcmVsaW1pbmFyeSBFeWViYWxsIERhdGE6ICIpDQpjYXQoIk1heCBNb3JuaW5nIFByb2R1Y3Rpdml0eTogIiwgbWF4KG15RGF0YSREYXkuUHJvZHVjdGl2aXR5KSwgIlxuIikNCmNhdCgiTWVhbiBNb3JuaW5nIFByb2R1Y3Rpdml0eTogIiwgbWVhbihteURhdGEkRGF5LlByb2R1Y3Rpdml0eSksICJcblxuIikNCg0KY2F0KCJNYXggTmlnaHQgUHJvZHVjdGl2aXR5OiAiLCBtYXgobXlEYXRhJE5pZ2h0LlRpbWUuUHJvZHVjdGl2aXR5KSwgIlxuIikNCmNhdCgiTWVhbiBOaWdodCBQcm9kdWN0aXZpdHk6ICIsIG1lYW4obXlEYXRhJE5pZ2h0LlRpbWUuUHJvZHVjdGl2aXR5KSkNCg0KDQpgYGANCg0KRmlyc3QgVGVzdCwgQW0gSSBhIG1vcm5pbmcgcGVyc29uIG9yIGEgbmlnaHQgcGVyc29uLiBUIFRlc3QuIFdlIHdhbnQgdG8gQXN3ZXIgdGhlIHF1ZXN0aW9uIG9mIHdoZXRoZXIgSSBhbSBNb3JuaW5nIHBlcnNvbiBvciBuaWdodCBwZXJzb24uIElzIG1vcmUgd29yayBkb25lIHdoZW4gc3VuIGlzIHVwIG9yIHN1biBpcyBkb3duPw0KDQpXZSB1c2Ugc3R1ZGVudHMgdCB0ZXN0IG9uIHR3byBzYW1wbGVzIG9mIGRheSB0aW1lIHByb2R1Y3Rpdml0eSBhbmQgbmlnaHQgdGltZQ0KDQoNCmBgYHtyfQ0KDQp0LnRlc3QobXlEYXRhJERheS5Qcm9kdWN0aXZpdHksIG15RGF0YSROaWdodC5UaW1lLlByb2R1Y3Rpdml0eSwgcGFpcmVkPVRSVUUpDQoNCg0KYGBgDQoNCkFkZGljdGVkIHRvIENvZmZlIG9yIG5vdA0KDQoNCmBgYHtyfQ0KDQphZGRpY3RQIDwtIHN1bShkaHlwZXIoNDoxMCwgMTAsMjUsOSkpDQoNCmNhdCgiT3VyIFAgdmFsdWUgdG8gdGVzdCBmb3IgYWRkaWN0aW9uIGlzOiAiLCBhZGRpY3RQLCAiIE91ciBwIHZhbHVlIGlzOiAiLCBhZGRpY3RQKjEwMCwgIiUiKQ0KDQpgYGANClRoZSBwcm9iYWJpbGl0eSBpZiB3ZSBkbyBub3QgaGF2ZSBhbiBhZGRpY3Rpb24sIG9mIHNlZWluZyB0aGUgb2JzZXJ2YXRpb24gKFggPSA0KSBvciBhbiBvYnNlcnZhdGlvbiBtb3JlIGV4dHJlbWUuIFRoZSBwIHZhbHVlIGlzIG5vdCBzaWduaWZpY2FudCBmcm9tIHdlIG9icy4gV2UgZmFpbCB0byByZWplY3QgdGhlIG51bGwNCg0KSSBkbyBub3QgaGF2ZSBhbiBhZGRpY3Rpb24gdG8gY2FmZmVuZS4NCg0KYGBge3J9DQoNCg0KI1ZlcmlmeQ0KeCA8LSAwOjEwDQpwbG90KHgsIGRoeXBlcih4LDEwLDI1LDkpLHR5cGU9J2gnLGx3ZD00LGNvbD1jKHJlcCgiYmxhY2siLDUpLHJlcCgicmVkIiwzKSkpDQpsZWdlbmQoInRvcHJpZ2h0Iixsd2Q9NCwgY29sPWMoImJsYWNrIiwicmVkIiksbGVnZW5kPWMoInJlZ3VsYXIgcG9pbnRzIiwibW9yZSBleHRyZW1lIikpDQoNCg0KYGBgDQpgYGB7cn0NCg0KYWRkaWN0TWF0cml4IDwtIG1hdHJpeChjKDQsNiw1LDIwKSwyLDIsYnlyb3c9VFJVRSkNCmRpbW5hbWVzKGFkZGljdE1hdHJpeCkgPC0gbGlzdCAod2Vlaz1jKCJFbmQiLCJEYXkiKSwgIGRyaW5raW5nSGFiaXQ9YygiQWJ1c2UiLCJOb3JtYWwiKSApDQphZGRpY3RNYXRyaXgNCg0KZmlzaGVyLnRlc3QoYWRkaWN0TWF0cml4LCBhbHRlcm5hdGl2ZT0iZ3JlYXRlciIpDQoNCmBgYA0KDQpQb2lzc29uIGRpc3RyaWJ1dGlvbiB0ZXN0IHdoZXRoZXIgbW9yZSBjdXBzIG9mIGNvZmZlIGlzID0gcHJvZHVjdGl2aXR5LiBXZSBuZWVkIHRvIGZpbmQgTGFtYmRhLg0KDQpgYGB7cn0NCg0KbGFtYmRhIDwtIG1lYW4obXlEYXRhJFRvdGFsLkRhaWx5LlByb2R1Y3Rpdml0eSkNCg0KDQpgYGANCg0KVGVzdCB0ZXN0DQoNCmBgYHtyfQ0KDQpsYW1iZGFTZXEgPC0gc2VxKGZyb20gPSAwLCB0byA9IDUgLCBsZW4gPSAxMDApDQpwbG90KGxhbWJkYVNlcSwgZHBvaXMoMyxsYW1iZGFTZXEpLCBtYWluID0gImxpa2VsaWhvb2QgZm9yIGxhbWJkYSIpDQphYmxpbmUodiA9IGxhbWJkYSApDQoNCmBgYA0KDQpgYGB7cn0NCg0Kc3VwcEN1cnZlIDwtIGRwb2lzKDMsIGxhbWJkYVNlcSwgbG9nID0gVFJVRSkNCnBsb3QobGFtYmRhU2VxLHN1cHBDdXJ2ZS1tYXgoc3VwcEN1cnZlKSxtYWluPSdzdXBwb3J0IGZ1bmN0aW9uIGZvciBsYW1iZGEnKQ0KYWJsaW5lKHY9bGFtYmRhKQ0KDQoNCmBgYA0KDQpXZSBjYW4gaW5mZXIgdGhhdCBsYW1iZGEgPSAyLjgzIGlzIGJhbmcgb24gdGhlIG1vbmV5LiBJdCBpcyBhY2NlcHRhYmxlIHRvIGJlIHVzZWQgaW4gb3VyIG1vZGVsLg0KDQpgYGB7cn0NCg0KY3JpdGNhbE9icyA8LSBxcG9pcygwLjk1LCBsYW1iZGEgKSANCnBWYWwgPC0gcHBvaXMoY3JpdGNhbE9icyxsYW1iZGEgKSANCg0KDQpwbG90KDA6MjAsIGRwb2lzKCB4PTA6MjAsIGxhbWJkYT0yLjgzICksIHhsaW09YygtMiwyMCkpDQpub3JtZGVuIDwtIGZ1bmN0aW9uKHgpe2Rub3JtKHgsIG1lYW49Mi44Mywgc2Q9c3FydCgyLjgzKSl9DQpjdXJ2ZShub3JtZGVuLCBmcm9tPS00LCB0bz0yMCwgYWRkPVRSVUUsIGNvbD0icHVycGxlIikNCg0KYWJsaW5lKHY9Y3JpdGNhbE9icywgY29sID0gInJlZCIgKSANCmFibGluZSh2PTMsIGNvbCA9ICJibHVlIikNCg0KDQpgYGANCg0KY29uY2x1c2lvbiBpcyB0aGF0IHdlIGZhaWwgdG8gcmVqZWN0IHRoZSBOdWxsDQoNCmBgYHtyfQ0KdHlwZW9mKG15RGF0YSRTbGVlcC5UaW1lKQ0KDQpjYXQoIlxuIikNCg0KbXlEYXRhJFNsZWVwLlRpbWUNCg0KI21heChteURhdGEkU2xlZXAuVGltZSkNCmNhdCgiXG4iKQ0KDQpzbGVlcFRJbWVDb2wgPC0gZm9ybWF0KGFzLlBPU0lYY3QobXlEYXRhJFNsZWVwLlRpbWUsZm9ybWF0PSIlbDolTTolUyIpLCIlSCVNJVMiKQ0Kc2xlZXBUSW1lQ29sDQoNCmNhdCgiXG4iKQ0KDQpoZWFkKHNsZWVwVEltZUNvbCkNCmNhdCgiXG5cblxuXG4iKQ0KdGFpbChzbGVlcFRJbWVDb2wpDQoNCmNhdCgiXG4iKQ0KDQptYXgoc2xlZXBUSW1lQ29sKQ0KbWluKHNsZWVwVEltZUNvbCkNCg0KY2F0KCJcbiIpDQojIDwtIGFzLkRhdGUobXlEYXRhJFNsZWVwLlRpbWUpDQojdGVzdCA8LSBhcy5QT1NJWGx0KGFzLkRhdGUobXlEYXRhJFNsZWVwLlRpbWUpKQ0KDQpgYGANCg0KDQoiRHJpbmtpbmcgY29mZmVlIGF0IGFmdGVyIDggbGVhZHMgdG8gYSBzbGVlcGxlc3MgbmlnaHQiDQoNCg0KDQo=</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIlNMZWVwIENvZmZlZSBQcm9kdWN0aXZpdHkgUG9ydGZvbGlvIg0Kb3V0cHV0OiBodG1sX25vdGVib29rDQotLS0NCg0KSXRzIGxpa2UgSnVwcGl0ZXIgTm90ZWJvb2sgYnV0IGZvciBzY2llbmNlDQoNClJ1biBDaHVuayAqQ3RybCtTaGlmdCtFbnRlcioNCkFkZCBDaHVuY2sgKkN0cmwrQWx0K0kqDQpIVE1MIFByZXZpZXcgKkN0cmwrU2hpZnQrSyoNCg0KYGBge3J9DQoNCnByaW50KCJQb3J0Zm9saW8gQXNzaWdubWVudCIpDQoNCg0KYGBgDQoNCmBgYHtyfQ0KDQpteURhdGEgPC0gcmVhZC5jc3YoJy4vZGF0YS9zbGVlcENvZmZlZVByb2R1Y3Rpdml0eS5jc3YnKQ0KDQpjYXQoIklzIGRhdGEgYSBkYXRhZnJhbWU6ICIsIGlzLmRhdGEuZnJhbWUobXlEYXRhKSwgIlxuIikNCmNhdCgiRGF0YXNldCBDb250YWluczogIiwgbmNvbChteURhdGEpLCAiIEF0dHJpYnV0ZXNcbiIpDQpjYXQoIkRhdGFzZXQgQ29udGFpbnM6ICIsIG5yb3cobXlEYXRhKSwgIiBJbnN0YW5jZXMiKQ0KDQoNCmBgYA0KDQpgYGB7cn0NCnByaW50KCJQcmVsaW1pbmFyeSBFeWViYWxsIERhdGE6ICIpDQpjYXQoIk1heCBNb3JuaW5nIFByb2R1Y3Rpdml0eTogIiwgbWF4KG15RGF0YSREYXkuUHJvZHVjdGl2aXR5KSwgIlxuIikNCmNhdCgiTWVhbiBNb3JuaW5nIFByb2R1Y3Rpdml0eTogIiwgbWVhbihteURhdGEkRGF5LlByb2R1Y3Rpdml0eSksICJcblxuIikNCg0KY2F0KCJNYXggTmlnaHQgUHJvZHVjdGl2aXR5OiAiLCBtYXgobXlEYXRhJE5pZ2h0LlRpbWUuUHJvZHVjdGl2aXR5KSwgIlxuIikNCmNhdCgiTWVhbiBOaWdodCBQcm9kdWN0aXZpdHk6ICIsIG1lYW4obXlEYXRhJE5pZ2h0LlRpbWUuUHJvZHVjdGl2aXR5KSkNCg0KDQpgYGANCg0KRmlyc3QgVGVzdCwgQW0gSSBhIG1vcm5pbmcgcGVyc29uIG9yIGEgbmlnaHQgcGVyc29uLiBUIFRlc3QuIFdlIHdhbnQgdG8gQXN3ZXIgdGhlIHF1ZXN0aW9uIG9mIHdoZXRoZXIgSSBhbSBNb3JuaW5nIHBlcnNvbiBvciBuaWdodCBwZXJzb24uIElzIG1vcmUgd29yayBkb25lIHdoZW4gc3VuIGlzIHVwIG9yIHN1biBpcyBkb3duPw0KDQpXZSB1c2Ugc3R1ZGVudHMgdCB0ZXN0IG9uIHR3byBzYW1wbGVzIG9mIGRheSB0aW1lIHByb2R1Y3Rpdml0eSBhbmQgbmlnaHQgdGltZQ0KDQoNCmBgYHtyfQ0KDQp0LnRlc3QobXlEYXRhJERheS5Qcm9kdWN0aXZpdHksIG15RGF0YSROaWdodC5UaW1lLlByb2R1Y3Rpdml0eSwgcGFpcmVkPVRSVUUpDQoNCg0KYGBgDQoNCkFkZGljdGVkIHRvIENvZmZlIG9yIG5vdA0KDQoNCmBgYHtyfQ0KDQphZGRpY3RQIDwtIHN1bShkaHlwZXIoNDoxMCwgMTAsMjUsOSkpDQoNCmNhdCgiT3VyIFAgdmFsdWUgdG8gdGVzdCBmb3IgYWRkaWN0aW9uIGlzOiAiLCBhZGRpY3RQLCAiIE91ciBwIHZhbHVlIGlzOiAiLCBhZGRpY3RQKjEwMCwgIiUiKQ0KDQpgYGANClRoZSBwcm9iYWJpbGl0eSBpZiB3ZSBkbyBub3QgaGF2ZSBhbiBhZGRpY3Rpb24sIG9mIHNlZWluZyB0aGUgb2JzZXJ2YXRpb24gKFggPSA0KSBvciBhbiBvYnNlcnZhdGlvbiBtb3JlIGV4dHJlbWUuIFRoZSBwIHZhbHVlIGlzIG5vdCBzaWduaWZpY2FudCBmcm9tIHdlIG9icy4gV2UgZmFpbCB0byByZWplY3QgdGhlIG51bGwNCg0KSSBkbyBub3QgaGF2ZSBhbiBhZGRpY3Rpb24gdG8gY2FmZmVuZS4NCg0KYGBge3J9DQoNCg0KI1ZlcmlmeQ0KeCA8LSAwOjEwDQpwbG90KHgsIGRoeXBlcih4LDEwLDI1LDkpLHR5cGU9J2gnLGx3ZD00LGNvbD1jKHJlcCgiYmxhY2siLDUpLHJlcCgicmVkIiwzKSkpDQpsZWdlbmQoInRvcHJpZ2h0Iixsd2Q9NCwgY29sPWMoImJsYWNrIiwicmVkIiksbGVnZW5kPWMoInJlZ3VsYXIgcG9pbnRzIiwibW9yZSBleHRyZW1lIikpDQoNCg0KYGBgDQpgYGB7cn0NCg0KYWRkaWN0TWF0cml4IDwtIG1hdHJpeChjKDQsNiw1LDIwKSwyLDIsYnlyb3c9VFJVRSkNCmRpbW5hbWVzKGFkZGljdE1hdHJpeCkgPC0gbGlzdCAod2Vlaz1jKCJFbmQiLCJEYXkiKSwgIGRyaW5raW5nSGFiaXQ9YygiQWJ1c2UiLCJOb3JtYWwiKSApDQphZGRpY3RNYXRyaXgNCg0KZmlzaGVyLnRlc3QoYWRkaWN0TWF0cml4LCBhbHRlcm5hdGl2ZT0iZ3JlYXRlciIpDQoNCmBgYA0KDQpQb2lzc29uIGRpc3RyaWJ1dGlvbiB0ZXN0IHdoZXRoZXIgbW9yZSBjdXBzIG9mIGNvZmZlIGlzID0gcHJvZHVjdGl2aXR5LiBXZSBuZWVkIHRvIGZpbmQgTGFtYmRhLg0KDQpgYGB7cn0NCg0KbGFtYmRhIDwtIG1lYW4obXlEYXRhJFRvdGFsLkRhaWx5LlByb2R1Y3Rpdml0eSkNCg0KDQpgYGANCg0KVGVzdCB0ZXN0DQoNCmBgYHtyfQ0KDQpsYW1iZGFTZXEgPC0gc2VxKGZyb20gPSAwLCB0byA9IDUgLCBsZW4gPSAxMDApDQpwbG90KGxhbWJkYVNlcSwgZHBvaXMoMyxsYW1iZGFTZXEpLCBtYWluID0gImxpa2VsaWhvb2QgZm9yIGxhbWJkYSIpDQphYmxpbmUodiA9IGxhbWJkYSApDQoNCmBgYA0KDQpgYGB7cn0NCg0Kc3VwcEN1cnZlIDwtIGRwb2lzKDMsIGxhbWJkYVNlcSwgbG9nID0gVFJVRSkNCnBsb3QobGFtYmRhU2VxLHN1cHBDdXJ2ZS1tYXgoc3VwcEN1cnZlKSxtYWluPSdzdXBwb3J0IGZ1bmN0aW9uIGZvciBsYW1iZGEnKQ0KYWJsaW5lKHY9bGFtYmRhKQ0KDQoNCmBgYA0KDQpXZSBjYW4gaW5mZXIgdGhhdCBsYW1iZGEgPSAyLjgzIGlzIGJhbmcgb24gdGhlIG1vbmV5LiBJdCBpcyBhY2NlcHRhYmxlIHRvIGJlIHVzZWQgaW4gb3VyIG1vZGVsLg0KDQpgYGB7cn0NCg0KY3JpdGNhbE9icyA8LSBxcG9pcygwLjk1LCBsYW1iZGEgKSANCnBWYWwgPC0gcHBvaXMoY3JpdGNhbE9icyxsYW1iZGEgKSANCg0KDQpwbG90KDA6MjAsIGRwb2lzKCB4PTA6MjAsIGxhbWJkYT0yLjgzICksIHhsaW09YygtMiwyMCkpDQpub3JtZGVuIDwtIGZ1bmN0aW9uKHgpe2Rub3JtKHgsIG1lYW49Mi44Mywgc2Q9c3FydCgyLjgzKSl9DQpjdXJ2ZShub3JtZGVuLCBmcm9tPS00LCB0bz0yMCwgYWRkPVRSVUUsIGNvbD0icHVycGxlIikNCg0KYWJsaW5lKHY9Y3JpdGNhbE9icywgY29sID0gInJlZCIgKSANCmFibGluZSh2PTMsIGNvbCA9ICJibHVlIikNCg0KDQpgYGANCg0KY29uY2x1c2lvbiBpcyB0aGF0IHdlIGZhaWwgdG8gcmVqZWN0IHRoZSBOdWxsDQoNCldlIHdpc2ggdG8gVXNlIFBlYXJzb24ncyBDaGkgU3F1YXJlZCBUZXN0IHRvIGV4YW1pbmUgd2hldGhlciBQcm9kdWN0aXZpdHkgaXMgaW5kZXBlbmRlbnQgb2Ygc2xlZXBpbmcgQmVmb3JlIDEyIG9yIGFmdGVyIDEyLg0KDQpgYGB7cn0NCg0KbGlicmFyeShNQVNTKQ0KY2hpVGVzdFRibCA8LSB0YWJsZShteURhdGEkc2xlZXBUaW1lQ2F0Q2xhc3MsIG15RGF0YSRUb3RhbC5EYWlseS5Qcm9kdWN0aXZpdHkpDQoNCmNoaVRlc3RUYmwNCg0KY2F0KGNoaVRlc3RUYmwsICJcblxuIikNCmNoaXNxLnRlc3QoY2hpVGVzdFRibCkNCg0KDQpgYGANClNpbmNlIHRoZSBwIHZhbHVlIGlzIDAuMzg1MyB3ZSBpcyBncmVhdGVyIHRoYW4gdGhlIHNpZ25pZmljYW5jZSBsZXZlbCwgd2UgZG8gbm90IHJlamVjdCB0aGUgbnVsbA0KDQpgYGB7cn0NCiNtYWtlIGl0IGZ1cnRoZXIgYWNjdXJhdGUgYnkgY29tYmluaW5nIHRhYmxlcyBpbnRvIDMgZ3JvdXBzDQpuZXdUYmwgPC0gY2JpbmQoY2hpVGVzdFRibFssIjAiXStjaGlUZXN0VGJsWywiMS4xIl0rY2hpVGVzdFRibFssIjEuMTUiXStjaGlUZXN0VGJsWywiMS40NSJdK2NoaVRlc3RUYmxbLCIyIl0rY2hpVGVzdFRibFssIjIuMDUiXStjaGlUZXN0VGJsWywiMi4xNSJdLA0KICAgICAgICAgICAgICAgIGNoaVRlc3RUYmxbLCIyLjMiXStjaGlUZXN0VGJsWywiMi42Il0rY2hpVGVzdFRibFssIjIuNyJdK2NoaVRlc3RUYmxbLCIzLjA1Il0rY2hpVGVzdFRibFssIjMuMzUiXStjaGlUZXN0VGJsWywiMy40Il0rY2hpVGVzdFRibFssIjMuNDUiXSwNCiAgICAgICAgICAgICAgICBjaGlUZXN0VGJsWywiMy40Il0rY2hpVGVzdFRibFssIjMuOCJdK2NoaVRlc3RUYmxbLCI0LjE1Il0rY2hpVGVzdFRibFssIjQuMyJdK2NoaVRlc3RUYmxbLCI0LjM1Il0rY2hpVGVzdFRibFssIjQuNDUiXStjaGlUZXN0VGJsWywiNSJdK2NoaVRlc3RUYmxbLCI1LjMiXSkNCg0KDQpjaGlzcS50ZXN0KG5ld1RibCkNCg0KI2NidGwgPC0gY2JpbmQoY2hpVGVzdFRibCkNCg0KYGBgDQoNCmBgYHtyfQ0KDQojbWFrZSBpdCBmdXJ0aGVyIGFjY3VyYXRlIGJ5IGNvbWJpbmluZyB0YWJsZXMgaW50byAzIGdyb3Vwcw0KbmV3VGJsIDwtIGNiaW5kKGNoaVRlc3RUYmxbLCIwIl0rY2hpVGVzdFRibFssIjEuMSJdK2NoaVRlc3RUYmxbLCIxLjE1Il0rY2hpVGVzdFRibFssIjEuNDUiXStjaGlUZXN0VGJsWywiMiJdK2NoaVRlc3RUYmxbLCIyLjA1Il0rY2hpVGVzdFRibFssIjIuMTUiXSsgY2hpVGVzdFRibFssIjIuMyJdK2NoaVRlc3RUYmxbLCIyLjYiXStjaGlUZXN0VGJsWywiMi43Il0sDQogICAgICAgICAgICAgICAgY2hpVGVzdFRibFssIjMuMDUiXStjaGlUZXN0VGJsWywiMy4zNSJdK2NoaVRlc3RUYmxbLCIzLjQiXStjaGlUZXN0VGJsWywiMy40NSJdK2NoaVRlc3RUYmxbLCIzLjQiXStjaGlUZXN0VGJsWywiMy44Il0rY2hpVGVzdFRibFssIjQuMTUiXStjaGlUZXN0VGJsWywiNC4zIl0rY2hpVGVzdFRibFssIjQuMzUiXStjaGlUZXN0VGJsWywiNC40NSJdKw0KICAgICAgICAgICAgICAgIGNoaVRlc3RUYmxbLCI1Il0rY2hpVGVzdFRibFssIjUuMyJdKSAgICAgICANCg0KDQpjaGlzcS50ZXN0KG5ld1RibCkNCg0KI2NidGwgPC0gY2JpbmQoY2hpVGVzdFRibCkNCg0KDQoNCmBgYA0KDQoNClRyeSB0aGlzLiBjYWxjdWxhdGUgYmFkbmVzcyBvZiBGaXQNCg0KDQpgYGB7cn0NCg0KZXhwZWN0IDwtIGMoKQ0KDQpvYnMgPC0gYygpDQoNCg0KDQpgYGANCg0KYGBge3J9DQptZWFuKG15RGF0YSRUb3RhbC5EYWlseS5Qcm9kdWN0aXZpdHkpDQpgYGANCg0KQmF5ZXNpYW4NCiJEcmlua2luZyBjb2ZmZWUgYXQgYWZ0ZXIgOCBsZWFkcyB0byBhIHNsZWVwbGVzcyBuaWdodCINCg0KYGBge3J9DQoNCg0KDQpgYGANCg0KDQoNCmBgYHtyfQ0KDQoNCg0KDQpgYGANCg0KDQoNCg==</div>
 
 
 

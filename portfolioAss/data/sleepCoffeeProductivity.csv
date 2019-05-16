@@ -1,36 +1,36 @@
-Data Index,Date,Day,Wake Up Time,Day Productivity,Night Time Productivity,Total Daily Productivity,Sleep Time,Sleep Duration,Time of Caffeine Intake,N Cups of Coffee,comments
-1,11/4/2019,Thursday,07:28:00 AM,1.45,0,1.45,10:53:00 PM,7:08:00,8:52 AM,1,semester
-2,12/4/2019,Friday,06:32:00 AM,1.15,0,1.15,11:35:00 PM,7:39:00,"7:30 AM, 2:34 PM",2,semester
-3,13/4/2019,Saturday,08:26:00 AM,0,0,0,11:50:00 PM,8:51,"11:20 AM, 4:20 PM",2,sem break
-4,14/4/2019,Sunday,09:05:00 AM,1.3,0.45,2.15,12:05:00 AM,9:15,NaN,0,sem break
-5,15/4/2019,Monday,08:30:00 AM,1.1,0,1.1,11:20:00 PM,8:25,1:45 PM,1,sem break
-6,16/4/2019,Tuesday,06:35:00 AM,1.2,2.15,3.35,12:20:00 AM,7:15,"10:45 AM, 8:45 PM",2,sem break
-7,17/4/2019,Wednesday,08:45:00 AM,2.3,3,5.3,12:45:00 AM,8:25,"9:45:00 AM, 2:00 PM, 6:40 PM",3,sem break
-8,18/4/2019,Thursday,08:42:00 AM,1.3,1.3,2.6,12:15:00 AM,7:57,10:40 AM,1,sem break
-9,19/4/2019,Friday,08:45:00 AM,0,2.3,2.3,12:45:00 AM,8:30,NaN,0,sem break Good Friday
-10,20/4/2019,Saturday,09:10:00 AM,1.45,2,3.45,12:50:00 AM,8:25,4:15 PM,1,sem break
-11,21/4/2019,Sunday,09:30:00 AM,2,3,5,01:15:00 AM,8:40,"5:00 PM, 7:50 PM",2,sem break Easter
-12,22/4/2019,Monday,09:46:00 AM,1.3,2.45,4.15,01:10:00 AM,8:31,"4:40: PM, 9:30 PM",2,sem break Easter Monday
-13,23/4/2019,Tuesday,09:05:00 AM,1.2,2.2,3.4,12:20:00 AM,7:55,10:45 AM,1,sem break TAPS submission
-14,24/4/2019,Wednesday,08:45:00 AM,0,0,0,12:12:00 AM,8:25,9:35 AM,1,sem break
-15,25/4/2019,Thursday,09:38:00 AM,0,0,0,01:00:00 AM,9:26,NaN,0,sem break
-16,26/4/2019,Friday,09:48:00 AM,0.3,1.35,2.05,12:35:00 AM,8:48,10:52 AM,1,sem break
-17,27/4/2019,Saturday,07:26:00 AM,0,0,0,12:30:00 AM,6:51,8:15 AM,1,sem break
-18,28/4/2019,Sunday,08:42:00 AM,0.45,1.3,2.15,11:42:00 PM,8:12,NaN,0,sem break
-19,29/4/2019,Monday,07:42:00 AM,1.45,2,3.45,10:30:00 PM,8:00,10:05 AM,1,semester
-20,30/4/2019,Tuesday,07:12:00 AM,1.2,2.15,3.35,12:22:00 AM,8:42,10:15 AM,1,semester
-21,1/5/2019,Wednesday,07:35:00 AM,2,2.3,4.3,12:45:00 AM,7:13,NaN,0,semester
-22,2/5/2019,Thursday,08:22:00 AM,2.3,2,4.3,12:22:00 AM,7:37,4:38 PM,1,semester
-23,3/5/2019,Friday,08:18:00 AM,2.2,0.45,3.05,10:30:00 PM,7:56,"9:23 AM, 4:24 PM",2,semester
-24,4/5/2019,Saturday,07:16:00 AM,2.3,1.2,3.5,12:30:00 AM,8:46,8:44 AM,1,semester Weekend
-25,5/5/2019,Sunday,08:45:00 AM,0,1.45,1.45,01:10:00 AM,8:15,NaN,0,semester Weekend
-26,6/5/2019,Monday,08:52:00 AM,1.3,2.15,3.45,01:25:00 AM,7:42,10:22 AM,1,semester
-27,7/5/2019,Tuesday,09:04:00 AM,3,1.45,4.45,12:48:00 AM,7:39,NaN,0,semester
-28,8/5/2019,Wednesday,08:35:00 AM,1.3,2.5,3.8,01:20:00 AM,7:47,"9:42 AM, 8:20 PM",2,semester
-29,9/5/2019,Thursday,07:52:00 AM,1.45,2,3.45,10:30:00 PM,6:32,"8:48 AM, 4:30 PM",2,semester
-30,10/5/2019,Friday,08:47:00 AM,2,0,2,12:30:00 AM,10:17,NaN,0,semester
-31,11/5/2019,Saturday,08:52:00 AM,1.45,2,3.45,09:45:00 PM,8:22,10:10 AM,1,semester Weekend
-32,12/5/2019,Sunday,09:15:00 AM,2.2,2.15,4.35,01:25:00 AM,11:30,NaN,0,semester Weekend
-33,13/5/2019,Monday,08:40:00 AM,2.3,2,4.3,12:48:00 AM,7:15,"9:38 AM, 4:11 PM, 8:52 PM",3,semester
-34,14/5/2019,Tuesday,08:15:00 AM,2.45,2,4.45,12:10:00 AM,7:27,2:20 PM,1,semester
-35,15/5/2019,Wednesday,07:15:00 AM,1.25,1.45,2.7,12:28:00 AM,7:05,"8:45:00 PM , 3:45:00 PM",2,semester
+Data Index,Date,Day,Wake Up Time,Day Productivity,Night Time Productivity,Total Daily Productivity,Sleep Time,Sleep Duration,Time of Caffeine Intake,N Cups of Coffee,comments,sleepTimeCatClass,
+1,11/4/2019,Thursday,7:28:00 AM,1.45,0,1.45,10:53:00 PM,7:08:00,8:52 AM,1,semester,A,
+2,12/4/2019,Friday,6:32:00 AM,1.15,0,1.15,11:35:00 PM,7:39:00,"7:30 AM, 2:34 PM",2,semester,A,
+3,13/4/2019,Saturday,8:26:00 AM,0,0,0,11:50:00 PM,8:51,"11:20 AM, 4:20 PM",2,sem break,A,
+4,14/4/2019,Sunday,9:05:00 AM,1.3,0.45,2.15,12:05:00 AM,9:15,NaN,0,sem break,B,
+5,15/4/2019,Monday,8:30:00 AM,1.1,0,1.1,11:20:00 PM,8:25,1:45 PM,1,sem break,A,
+6,16/4/2019,Tuesday,6:35:00 AM,1.2,2.15,3.35,12:20:00 AM,7:15,"10:45 AM, 8:45 PM",2,sem break,B,
+7,17/4/2019,Wednesday,8:45:00 AM,2.3,3,5.3,12:45:00 AM,8:25,"9:45:00 AM, 2:00 PM, 6:40 PM",3,sem break,B,
+8,18/4/2019,Thursday,8:42:00 AM,1.3,1.3,2.6,12:15:00 AM,7:57,10:40 AM,1,sem break,B,
+9,19/4/2019,Friday,8:45:00 AM,0,2.3,2.3,12:45:00 AM,8:30,NaN,0,sem break Good Friday,B,
+10,20/4/2019,Saturday,9:10:00 AM,1.45,2,3.45,12:50:00 AM,8:25,4:15 PM,1,sem break,B,
+11,21/4/2019,Sunday,9:30:00 AM,2,3,5,1:15:00 AM,8:40,"5:00 PM, 7:50 PM",2,sem break Easter,C,
+12,22/4/2019,Monday,9:46:00 AM,1.3,2.45,4.15,1:10:00 AM,8:31,"4:40: PM, 9:30 PM",2,sem break Easter Monday,C,
+13,23/4/2019,Tuesday,9:05:00 AM,1.2,2.2,3.4,12:20:00 AM,7:55,10:45 AM,1,sem break TAPS submission,B,
+14,24/4/2019,Wednesday,8:45:00 AM,0,0,0,12:12:00 AM,8:25,9:35 AM,1,sem break,B,
+15,25/4/2019,Thursday,9:38:00 AM,0,0,0,1:00:00 AM,9:26,NaN,0,sem break,C,
+16,26/4/2019,Friday,9:48:00 AM,0.3,1.35,2.05,12:35:00 AM,8:48,10:52 AM,1,sem break,B,
+17,27/4/2019,Saturday,7:26:00 AM,0,0,0,12:30:00 AM,6:51,8:15 AM,1,sem break,B,
+18,28/4/2019,Sunday,8:42:00 AM,0.45,1.3,2.15,11:42:00 PM,8:12,NaN,0,sem break,A,
+19,29/4/2019,Monday,7:42:00 AM,1.45,2,3.45,10:30:00 PM,8:00,10:05 AM,1,semester,A,
+20,30/4/2019,Tuesday,7:12:00 AM,1.2,2.15,3.35,12:22:00 AM,8:42,10:15 AM,1,semester,B,
+21,1/5/2019,Wednesday,7:35:00 AM,2,2.3,4.3,12:45:00 AM,7:13,NaN,0,semester,B,
+22,2/5/2019,Thursday,8:22:00 AM,2.3,2,4.3,12:22:00 AM,7:37,4:38 PM,1,semester,B,
+23,3/5/2019,Friday,8:18:00 AM,2.2,0.45,3.05,10:30:00 PM,7:56,"9:23 AM, 4:24 PM",2,semester,A,
+24,4/5/2019,Saturday,7:16:00 AM,2.3,1.2,3.5,12:30:00 AM,8:46,8:44 AM,1,semester Weekend,B,
+25,5/5/2019,Sunday,8:45:00 AM,0,1.45,1.45,1:10:00 AM,8:15,NaN,0,semester Weekend,C,
+26,6/5/2019,Monday,8:52:00 AM,1.3,2.15,3.45,1:25:00 AM,7:42,10:22 AM,1,semester,C,
+27,7/5/2019,Tuesday,9:04:00 AM,3,1.45,4.45,12:48:00 AM,7:39,NaN,0,semester,B,
+28,8/5/2019,Wednesday,8:35:00 AM,1.3,2.5,3.8,1:20:00 AM,7:47,"9:42 AM, 8:20 PM",2,semester,C,
+29,9/5/2019,Thursday,7:52:00 AM,1.45,2,3.45,10:30:00 PM,6:32,"8:48 AM, 4:30 PM",2,semester,A,
+30,10/5/2019,Friday,8:47:00 AM,2,0,2,12:30:00 AM,10:17,NaN,0,semester,B,
+31,11/5/2019,Saturday,8:52:00 AM,1.45,2,3.45,9:45:00 PM,8:22,10:10 AM,1,semester Weekend,A,
+32,12/5/2019,Sunday,9:15:00 AM,2.2,2.15,4.35,1:25:00 AM,11:30,NaN,0,semester Weekend,C,
+33,13/5/2019,Monday,8:40:00 AM,2.3,2,4.3,12:48:00 AM,7:15,"9:38 AM, 4:11 PM, 8:52 PM",3,semester,B,
+34,14/5/2019,Tuesday,8:15:00 AM,2.45,2,4.45,12:10:00 AM,7:27,2:20 PM,1,semester,B,
+35,15/5/2019,Wednesday,7:15:00 AM,1.25,1.45,2.7,12:28:00 AM,7:05,"8:45:00 PM , 3:45:00 PM",2,semester,B,

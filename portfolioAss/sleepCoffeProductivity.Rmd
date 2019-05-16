@@ -132,38 +132,86 @@ abline(v=3, col = "blue")
 
 conclusion is that we fail to reject the Null
 
+We wish to Use Pearson's Chi Squared Test to examine whether Productivity is independent of sleeping Before 12 or after 12.
+
 ```{r}
-typeof(myData$Sleep.Time)
 
-cat("\n")
+library(MASS)
+chiTestTbl <- table(myData$sleepTimeCatClass, myData$Total.Daily.Productivity)
 
-myData$Sleep.Time
+chiTestTbl
 
-#max(myData$Sleep.Time)
-cat("\n")
+cat(chiTestTbl, "\n\n")
+chisq.test(chiTestTbl)
 
-sleepTImeCol <- format(as.POSIXct(myData$Sleep.Time,format="%l:%M:%S"),"%H%M%S")
-sleepTImeCol
 
-cat("\n")
+```
+Since the p value is 0.3853 we is greater than the significance level, we do not reject the null
 
-head(sleepTImeCol)
-cat("\n\n\n\n")
-tail(sleepTImeCol)
+```{r}
+#make it further accurate by combining tables into 3 groups
+newTbl <- cbind(chiTestTbl[,"0"]+chiTestTbl[,"1.1"]+chiTestTbl[,"1.15"]+chiTestTbl[,"1.45"]+chiTestTbl[,"2"]+chiTestTbl[,"2.05"]+chiTestTbl[,"2.15"],
+                chiTestTbl[,"2.3"]+chiTestTbl[,"2.6"]+chiTestTbl[,"2.7"]+chiTestTbl[,"3.05"]+chiTestTbl[,"3.35"]+chiTestTbl[,"3.4"]+chiTestTbl[,"3.45"],
+                chiTestTbl[,"3.4"]+chiTestTbl[,"3.8"]+chiTestTbl[,"4.15"]+chiTestTbl[,"4.3"]+chiTestTbl[,"4.35"]+chiTestTbl[,"4.45"]+chiTestTbl[,"5"]+chiTestTbl[,"5.3"])
 
-cat("\n")
 
-max(sleepTImeCol)
-min(sleepTImeCol)
+chisq.test(newTbl)
 
-cat("\n")
-# <- as.Date(myData$Sleep.Time)
-#test <- as.POSIXlt(as.Date(myData$Sleep.Time))
+#cbtl <- cbind(chiTestTbl)
+
+```
+
+```{r}
+
+#make it further accurate by combining tables into 3 groups
+newTbl <- cbind(chiTestTbl[,"0"]+chiTestTbl[,"1.1"]+chiTestTbl[,"1.15"]+chiTestTbl[,"1.45"]+chiTestTbl[,"2"]+chiTestTbl[,"2.05"]+chiTestTbl[,"2.15"]+ chiTestTbl[,"2.3"]+chiTestTbl[,"2.6"]+chiTestTbl[,"2.7"],
+                chiTestTbl[,"3.05"]+chiTestTbl[,"3.35"]+chiTestTbl[,"3.4"]+chiTestTbl[,"3.45"]+chiTestTbl[,"3.4"]+chiTestTbl[,"3.8"]+chiTestTbl[,"4.15"]+chiTestTbl[,"4.3"]+chiTestTbl[,"4.35"]+chiTestTbl[,"4.45"]+
+                chiTestTbl[,"5"]+chiTestTbl[,"5.3"])       
+
+
+chisq.test(newTbl)
+
+#cbtl <- cbind(chiTestTbl)
+
+
 
 ```
 
 
+Try this. calculate badness of Fit
+
+
+```{r}
+
+expect <- c()
+
+obs <- c()
+
+
+
+```
+
+```{r}
+mean(myData$Total.Daily.Productivity)
+```
+
+Bayesian
 "Drinking coffee at after 8 leads to a sleepless night"
+
+```{r}
+
+
+
+```
+
+
+
+```{r}
+
+
+
+
+```
 
 
 
