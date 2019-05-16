@@ -1,0 +1,169 @@
+---
+title: "SLeep Coffee Productivity Portfolio"
+output: html_notebook
+---
+
+Its like Juppiter Notebook but for science
+
+Run Chunk *Ctrl+Shift+Enter*
+Add Chunck *Ctrl+Alt+I*
+HTML Preview *Ctrl+Shift+K*
+
+```{r}
+
+print("Portfolio Assignment")
+
+
+```
+
+```{r}
+
+myData <- read.csv('./data/sleepCoffeeProductivity.csv')
+
+cat("Is data a dataframe: ", is.data.frame(myData), "\n")
+cat("Dataset Contains: ", ncol(myData), " Attributes\n")
+cat("Dataset Contains: ", nrow(myData), " Instances")
+
+
+```
+
+```{r}
+print("Preliminary Eyeball Data: ")
+cat("Max Morning Productivity: ", max(myData$Day.Productivity), "\n")
+cat("Mean Morning Productivity: ", mean(myData$Day.Productivity), "\n\n")
+
+cat("Max Night Productivity: ", max(myData$Night.Time.Productivity), "\n")
+cat("Mean Night Productivity: ", mean(myData$Night.Time.Productivity))
+
+
+```
+
+First Test, Am I a morning person or a night person. T Test. We want to Aswer the question of whether I am Morning person or night person. Is more work done when sun is up or sun is down?
+
+We use students t test on two samples of day time productivity and night time
+
+
+```{r}
+
+t.test(myData$Day.Productivity, myData$Night.Time.Productivity, paired=TRUE)
+
+
+```
+
+Addicted to Coffe or not
+
+
+```{r}
+
+addictP <- sum(dhyper(4:10, 10,25,9))
+
+cat("Our P value to test for addiction is: ", addictP, " Our p value is: ", addictP*100, "%")
+
+```
+The probability if we do not have an addiction, of seeing the observation (X = 4) or an observation more extreme. The p value is not significant from we obs. We fail to reject the null
+
+I do not have an addiction to caffene.
+
+```{r}
+
+
+#Verify
+x <- 0:10
+plot(x, dhyper(x,10,25,9),type='h',lwd=4,col=c(rep("black",5),rep("red",3)))
+legend("topright",lwd=4, col=c("black","red"),legend=c("regular points","more extreme"))
+
+
+```
+```{r}
+
+addictMatrix <- matrix(c(4,6,5,20),2,2,byrow=TRUE)
+dimnames(addictMatrix) <- list (week=c("End","Day"),  drinkingHabit=c("Abuse","Normal") )
+addictMatrix
+
+fisher.test(addictMatrix, alternative="greater")
+
+```
+
+Poisson distribution test whether more cups of coffe is = productivity. We need to find Lambda.
+
+```{r}
+
+lambda <- mean(myData$Total.Daily.Productivity)
+
+
+```
+
+Test test
+
+```{r}
+
+lambdaSeq <- seq(from = 0, to = 5 , len = 100)
+plot(lambdaSeq, dpois(3,lambdaSeq), main = "likelihood for lambda")
+abline(v = lambda )
+
+```
+
+```{r}
+
+suppCurve <- dpois(3, lambdaSeq, log = TRUE)
+plot(lambdaSeq,suppCurve-max(suppCurve),main='support function for lambda')
+abline(v=lambda)
+
+
+```
+
+We can infer that lambda = 2.83 is bang on the money. It is acceptable to be used in our model.
+
+```{r}
+
+critcalObs <- qpois(0.95, lambda ) 
+pVal <- ppois(critcalObs,lambda ) 
+
+
+plot(0:20, dpois( x=0:20, lambda=2.83 ), xlim=c(-2,20))
+normden <- function(x){dnorm(x, mean=2.83, sd=sqrt(2.83))}
+curve(normden, from=-4, to=20, add=TRUE, col="purple")
+
+abline(v=critcalObs, col = "red" ) 
+abline(v=3, col = "blue")
+
+
+```
+
+conclusion is that we fail to reject the Null
+
+```{r}
+typeof(myData$Sleep.Time)
+
+cat("\n")
+
+myData$Sleep.Time
+
+#max(myData$Sleep.Time)
+cat("\n")
+
+sleepTImeCol <- format(as.POSIXct(myData$Sleep.Time,format="%l:%M:%S"),"%H%M%S")
+sleepTImeCol
+
+cat("\n")
+
+head(sleepTImeCol)
+cat("\n\n\n\n")
+tail(sleepTImeCol)
+
+cat("\n")
+
+max(sleepTImeCol)
+min(sleepTImeCol)
+
+cat("\n")
+# <- as.Date(myData$Sleep.Time)
+#test <- as.POSIXlt(as.Date(myData$Sleep.Time))
+
+```
+
+
+"Drinking coffee at after 8 leads to a sleepless night"
+
+
+
