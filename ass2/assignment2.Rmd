@@ -1,16 +1,15 @@
 ---
-title: "Assignment 2"
+title: "Assignment 2 STATS 805"
 output: html_notebook
 ---
 
-This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
-
-Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
+Plot Poisson Distribution
 
 ```{r}
 
 print("Given a Significance of 5% and Lambda = 3.1")
 
+numVector <- 0:10
 lambdaParam2 <- 3.1
 critcalObs <- qpois(0.95, lambdaParam2)
 pVal <- ppois(critcalObs,lambdaParam2)
@@ -26,14 +25,10 @@ abline(v=7, col = "blue")
 
 
 
-
 ```
 
-Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
+Question 1 a)
 
-When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
-
-The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
 ```{r}
 
 dpois(7,3.1)
@@ -42,6 +37,9 @@ ppois(7,3.1, lower.tail=FALSE)
 
 
 ```
+
+Question 1 b)
+
 ```{r}
 
 Obs <- 7
@@ -59,7 +57,7 @@ print("Credible interval of lambda is between 4 and 12")
 
 
 ```
-
+Question 1 b)
 ```{r}
 
 Obs <- 7
