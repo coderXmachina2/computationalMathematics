@@ -1,0 +1,305 @@
+---
+title: "Calculus and Linear Algebra"
+output: html_notebook
+---
+
+plot function on interval -pi topi
+
+```{r}
+
+n <- seq(-pi,pi,5/100)
+
+f = function(x){
+  return(sin(sin(x^2)) + cos(1/(1 + x + x^2)) - 1)
+}
+
+plot(n , f(n), type='o', col = 'red', main = "function on interval -pi to pi")
+abline(h = 0, col = 'black')
+abline(v = 0, col = 'black')
+abline(v = -pi, col = 'blue')
+abline(v = pi, col = 'blue')
+
+
+```
+
+Find the roots of the equation from -2 to 2
+
+```{r}
+
+root1 <- uniroot(f, c(-2,-1))
+root2 <- uniroot(f, c(-1,0))
+root3 <- uniroot(f, c(1,2))
+root4 <- uniroot(f, c(0,1))
+
+roots <- c(root1$root , root2$root , root3$root, root4$root)
+cat("x intercepts when f(x) = 0:\n")
+roots
+
+
+```
+
+Verify. Blue lunes represent the roots
+
+```{r}
+plot(n , f(n), type='o', col = 'red', main = "function, find roots of polynomial")
+abline(h = 0, col = 'black')
+
+abline(v = 0, col = 'black')
+abline(v = -1.75, col = 'blue')
+abline(v = -0.84, col = 'blue')
+abline(v = 0.43, col = 'blue')
+abline(v = 1.77, col = 'blue')
+abline(v = -2, col = 'purple')
+abline(v = 2, col = 'purple')
+
+peak1 <- optimize(f, c(-2,-1), maximum = TRUE)
+peak2 <- optimize(f, c(-1,0), maximum = FALSE)
+peak3 <- optimize(f, c(1,2), maximum = TRUE)
+
+abline(v = peak1$maximum, col= "green") #x value
+abline(h = peak1$objective, col= "green")
+
+abline(v = peak2$minimum, col= "yellow")
+abline(h = peak2$objective, col= "yellow")
+
+abline(v = peak3$maximum, col= "cyan")
+abline(h = peak3$objective, col= "cyan")
+```
+
+
+```{r}
+ret <- f(0)
+ret
+
+cat("when x = 0, f(x) = -0.4596977")
+
+```
+
+Use R to plot an approximate derivative in the same range.
+
+Often, particularly in physics and engineering, a function may be too complicated to merit the work necessary to find the exact derivative, or the function itself is unknown, and all that is available are some points x and the function evaluated at those points
+
+Numerical differentiation, of finite differences is  one approach, to avoid these complications by approximating the derivative.
+
+```{r}
+
+xVect <- c(root1$root, peak1$maximum, root2$root, peak2$minimum, 0,root3$root, peak3$maximum, root4$root )
+fxVect <- c(0, peak1$objective, 0 ,  peak2$objective, ret, 0,  peak3$objective,  0)
+
+
+finite.differences <- function(x, y) {
+  if (length(x) != length(y)) {
+    stop('x and y vectors must have equal length')
+  }
+   
+  n <- length(x)
+   
+  # Initialize a vector of length n to enter the derivative
+  # approximations
+  fdx <- vector(length = n)
+   
+  # Iterate through the values using the forward differencing method
+  for (i in 2:n) {
+    fdx[i-1] <- (y[i-1] - y[i]) / (x[i-1] - x[i])
+  }
+   
+  # For the last value, since we are unable to perform the forward
+  # differencing method 
+  # as only the first n values are known, we use the backward
+  # differencing approach
+  # instead. Note this will essentially give the same value as the
+  # last iteration 
+  # in the forward differencing method, but it is used as an
+  # approximation as we 
+  # don't have any more information
+  
+  fdx[n] <- (y[n] - y[n - 1]) / (x[n] - x[n - 1])
+   
+  return(fdx)
+}
+
+fDerivAtPoint <- finite.differences(xVect, fxVect)
+cat("Finite Derivative at points:\n")
+xVect
+fxVect
+
+cat("\n")
+fDerivAtPoint
+
+
+
+```
+
+
+
+```{r}
+
+plot(fDerivAtPoint)
+
+
+```
+
+
+
+
+```{r}
+
+
+```
+
+Minimize Function:
+
+```{r}
+
+minPoint <- optimize(f, c(-1,1), maximum = FALSE)
+cat("Minimized point is at: ", minPoint$minimum , minPoint$objective)
+
+
+
+```
+
+Area Under Curve
+
+```{r}
+
+AUC <- integrate(f,0, 2)
+AUC
+
+```
+
+R multivariate analysis
+```{r}
+
+f2 <- function(x,y){
+  
+  return((x^2) + (y^2) + 7*sin(x+y^2))
+  
+}
+
+f2(0.4,0.5)
+
+```
+
+Verify
+```{r}
+
+
+checkVal <- (0.4^2) + (0.5^2) + 7*sin(0.4+0.5^2)
+checkVal
+
+
+```
+
+```{r}
+
+xRange <- rep(seq(from = -10, to = 10),2)
+yRange <- rep(seq(from = 10, to = 10),2)
+z <- matrix((xRange^2) + (yRange^2) + 7*sin(xRange+yRange^2), ncol=10,byrow=T)
+
+filled.contour(z, , nlevels = 10 , xlim = c(0,1.5) , ylim = c(0, 1.5) , xlab = "x", ylab = "y" , main = "Contour of Function")
+
+
+```
+
+
+```{r}
+
+contour(z, nlevels = 10 , xlim = c(0,3) , ylim = c(0, 3) , xlab = "x", ylab = "y" , main = "Contour of Function")
+
+
+```
+```{r}
+xRange <- seq(from = 0, to = 10)
+yRange <- seq(from = 0, to = 10)
+z <- matrix((xRange^2) + (yRange^2) + 7*sin(xRange+yRange^2),ncol=20,byrow=T)
+
+filled.contour(z, , nlevels = 10 , xlim = c(0,1) , ylim = c(0, 1) , xlab = "x", ylab = "y" , main = "Contour of Function")
+```
+
+
+```{r}
+
+x <- rep(seq(-3,3), 10)
+y <- rep(seq(-3,3), each =  10)
+z <- matrix(  (x^2) + (y^2) + 7*sin(x+y^2)  ,ncol=20, byrow=T)
+contour(z)
+
+
+
+```
+```{r}
+require(grDevices) # for colours
+x <- -6:16
+op <- par(mfrow = c(2, 2))
+contour(outer(x, x), method = "edge", vfont = c("sans serif", "plain"))
+
+```
+
+```{r}
+library(ContourFunctions)
+
+f2 <- function(r) cos(r[1]^2 + r[2]^2)*exp(-sqrt(r[1]^2 + r[2]^2)/(2*pi))
+cf_func(f1, xlim = c(-4*pi, 4*pi), ylim = c(-4*pi, 4*pi))
+```
+
+
+
+
+
+```{r}
+
+
+x <- seq(0, 1, )
+y <- seq(0, 1, )
+z <- matrix(   (x^2) + (y^2) + 7*sin(x+y^2)    ,ncol=10,byrow=T)
+
+
+contour(z)
+
+```
+
+```{r}
+
+
+a <- b <- seq(-4*pi, 4*pi, len = 27)
+r <- sqrt(outer(a^2, b^2, "+"))
+cf_grid(a, b, 2*sin(r^2)*exp(-r/(3*pi)))
+
+
+
+```
+```{r}
+
+x <- seq(from = -3, to = 3, len =100)
+y <- seq(from = -3, to = 3, len =100)
+z <- matrix((xRange^2) + (yRange^2) + 7*sin(xRange+yRange^2), ncol=10,byrow=T)
+
+contour(z , nlevels = 10 , xlim = c(0,2) , ylim = c(0, 2) , xlab = "x", ylab = "y" , main = "Contour of Function")
+
+
+```
+Matrices
+
+```{r}
+matrixB = matrix( c(3, 1, 1, 1, 2, 1, 1, 1, 2), nrow=3,  ncol=3) 
+matrixB
+
+detB <- det(matrixB)
+detB
+
+trB <- sum(diag(matrixB))
+trB
+
+
+```
+
+find the inverse using solve and verify
+
+```{r}
+
+invMatrix <- matrixB^-1
+invMatrix
+
+
+```
+
